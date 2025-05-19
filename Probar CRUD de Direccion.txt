@@ -1,0 +1,25 @@
+###Crear
+ POST http://localhost:8080/api/direcciones
+{
+    "idTerritorial": 1,
+    "nombre": "Dirección Central",
+    "descripcion": "Dirección principal"
+}
+
+###Listar
+GET http://localhost:8080/api/direcciones
+
+###Obtener
+GET http://localhost:8080/api/direcciones/1
+
+###Actualizar
+PUT http://localhost:8080/api/direcciones/1
+{
+    "idTerritorial": 1,
+    "nombre": "Dirección Central Actualizada",
+    "descripcion": "Nueva descripción",
+    "estado": true
+}
+
+###Eliminar
+DELETE http://localhost:8080/api/direcciones/1

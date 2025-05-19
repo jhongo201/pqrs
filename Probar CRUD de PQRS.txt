@@ -1,0 +1,113 @@
+# Crear PQRS Usuario externo (sin autenticación)
+POST http://localhost:8080/api/pqrs/publico
+{
+    "idTema": 3,
+    "nombreSolicitante": "John Doe",
+    "emailSolicitante": "john@example.com",
+    "telefonoSolicitante": "3001234567",
+    "tipoDocumentoSolicitante": "CC",
+    "numeroDocumentoSolicitante": "123456789",
+    "titulo": "Solicitud de información",
+    "descripcion": "Necesito información sobre el proceso X",
+    "prioridad": "MEDIA"
+}
+
+
+-->Respuesta esperada:
+{
+    "idPqrs": 2,
+    "nombreSolicitante": "John Doe",
+    "emailSolicitante": "john@example.com",
+    "telefonoSolicitante": "3001234567",
+    "tipoDocumentoSolicitante": "CC",
+    "numeroDocumentoSolicitante": "123456789",
+    "tema": {
+        "idTema": 3,
+        "area": {
+            "idArea": 6,
+            "nombre": "Riesgos Laborales"
+        },
+        "nombre": "Sistema de Informacions de Riesgo Psicosocial - SIRPSI",
+        "descripcion": "Sistema de informacion creado para Riesgos Laborales",
+        "estado": false
+    },
+    "titulo": "Solicitud de información",
+    "descripcion": "Necesito información sobre el proceso X",
+    "prioridad": "MEDIA",
+    "estadoPqrs": "PENDIENTE",
+    "fechaCreacion": "2025-01-03T17:49:54.8668288",
+    "fechaUltimaActualizacion": "2025-01-03T17:49:54.8668288",
+    "seguimientos": []
+}
+
+####Crear PQRS Usuario registrado (requiere token)
+POST http://localhost:8080/api/pqrs
+Authorization: Bearer tu-token
+{
+    "idTema": 1,
+    "titulo": "Consulta interna",
+    "descripcion": "Descripción de la consulta",
+    "prioridad": "ALTA",
+    "archivoAdjunto": "base64-del-archivo"
+}
+
+
+# Asignar PQRS a funcionario
+POST http://localhost:8080/api/pqrs/{id_pqrs}/asignar
+{
+    "idUsuarioNuevo": 1,
+    "motivoCambio": "Asignación inicial"
+}
+
+# Agregar Seguimiento
+POST http://localhost:8080/api/pqrs/{id_pqrs}/seguimiento
+{
+    "comentario": "Se realizó la revisión inicial",
+    "archivoAdjunto": "archivo.pdf",
+    "esRespuestaFinal": false
+}
+
+# Actualizar Estado
+PUT http://localhost:8080/api/pqrs/1/estado/EN_PROCESO
+
+# Obtener PQRS
+GET http://localhost:8080/api/pqrs/1
+
+# Listar Todos
+GET http://localhost:8080/api/pqrs
+
+# Listar por Estado
+GET http://localhost:8080/api/pqrs?estado=PENDIENTE
+
+# Listar por Usuario Asignado
+GET http://localhost:8080/api/pqrs?usuarioAsignado=1
+
+###Consultar por radicado
+GET /api/pqrs/radicado/PQRS-2025-01-0001
+
+###Listar PQRS del usuario actual:
+GET http://localhost:8080/api/pqrs/mis-pqrs
+
+###Listar PQRS sin asignar:
+GET /api/pqrs/sin-asignar
+
+
+# Consultar PQRS como solicitante
+GET http://localhost:8080/api/pqrs/publico/consulta/PQRS-2025-01-0001/token-uuid
+
+# Responder a un seguimiento
+POST http://localhost:8080/api/pqrs/publico/respuesta/PQRS-2025-01-0001/token-uuid
+{
+    "comentario": "Gracias por la respuesta, tengo una duda adicional...",
+    "archivoAdjunto": "respuesta.pdf"
+}
+
+###Registrar respuesta el usuario registrado
+POST http://localhost:8080/api/pqrs/{id_pqrs}/respuesta-usuario
+Authorization: Bearer tu-token
+Content-Type: application/json
+
+{
+    "comentario": "Mi respuesta como usuario registrado",
+    "archivoAdjunto": "archivo.pdf"
+}

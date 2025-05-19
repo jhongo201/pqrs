@@ -1,0 +1,61 @@
+###Crear Ruta publica:
+ POST http://localhost:8080/api/rutas
+{
+    "idModulo": 1,
+    "ruta": "/api/public/example",
+    "descripcion": "Endpoint público de ejemplo",
+    "esPublica": true
+}
+
+
+ ###Crear Ruta privada:
+ POST http://localhost:8080/api/rutas
+{
+    "idModulo": 1,
+    "ruta": "/api/private/example",
+    "descripcion": "Endpoint privado de ejemplo",
+    "esPublica": false,
+    "permisosRol": [
+        {
+            "idRol": 1,
+            "puedeLeer": true,
+            "puedeEscribir": true,
+            "puedeEliminar": false,
+            "puedeActualizar": true
+        },
+        {
+            "idRol": 2,
+            "puedeLeer": true,
+            "puedeEscribir": false,
+            "puedeEliminar": false,
+            "puedeActualizar": false
+        }
+    ]
+}
+
+###Actualizar Ruta
+PUT http://localhost:8080/api/rutas/{id}
+
+{
+    "idRuta": 1,
+    "idModulo": 1,
+    "ruta": "/api/example/updated",
+    "descripcion": "Ruta actualizada",
+    "estado": true,
+    "esPublica": false,
+    "permisosRol": [
+        {
+            "idRol": 1,
+            "puedeLeer": true,
+            "puedeEscribir": true,
+            "puedeEliminar": false,
+            "puedeActualizar": true
+        }
+    ]
+}
+
+###Listar todas las Rutas
+GET http://localhost:8080/api/rutas/{id}
+
+###Eliminar Ruta
+DELETE 

@@ -1,0 +1,44 @@
+###Crear empresa:
+ POST http://localhost:8080/api/empresas
+Headers:
+- Authorization: Bearer {token}
+- Content-Type: application/json
+
+{
+    "nombre": "Empresa ABC",
+    "nit": "900123456-7",
+    "telefono": "3001234567",
+    "email": "contacto@empresaabc.com"
+}
+
+###Listar empresas:
+GET http://localhost:8080/api/empresas
+Headers:
+- Authorization: Bearer {token}
+
+###Obtener empresa:
+
+GET http://localhost:8080/api/empresas/1
+Headers:
+- Authorization: Bearer {token}
+
+###Actualizar empresa:
+
+PUT http://localhost:8080/api/empresas/1
+Headers:
+- Authorization: Bearer {token}
+- Content-Type: application/json
+
+{
+    "nombre": "Empresa ABC Actualizada",
+    "nit": "900123456-7",
+    "telefono": "3009876543",
+    "email": "nuevo@empresaabc.com",
+    "estado": true
+}
+
+###Eliminar empresa
+
+DELETE http://localhost:8080/api/empresas/1
+Headers:
+- Authorization: Bearer {token}

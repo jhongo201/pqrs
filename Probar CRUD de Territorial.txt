@@ -1,0 +1,41 @@
+###Crear territorial:
+ POST http://localhost:8080/api/territoriales
+Headers:
+- Authorization: Bearer {token}
+- Content-Type: application/json
+
+{
+    "idEmpresa": 1,
+    "nombre": "Territorial Norte",
+    "codigo": "TN001",
+    "descripcion": "Territorial zona norte"
+}
+
+###Listar territoriales
+GET http://localhost:8080/api/territoriales
+Headers:
+- Authorization: Bearer {token}
+
+###Obtener territorial
+GET http://localhost:8080/api/territoriales/1
+Headers:
+- Authorization: Bearer {token}
+
+###Actualizar territorial
+PUT http://localhost:8080/api/territoriales/1
+Headers:
+- Authorization: Bearer {token}
+- Content-Type: application/json
+
+{
+    "idEmpresa": 1,
+    "nombre": "Territorial Norte Actualizada",
+    "codigo": "TN001",
+    "descripcion": "Descripción actualizada",
+    "estado": true
+}
+
+###Eliminar territorial
+DELETE http://localhost:8080/api/territoriales/1
+Headers:
+- Authorization: Bearer {token}

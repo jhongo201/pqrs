@@ -1,0 +1,25 @@
+###Crear
+POST http://localhost:8080/api/areas
+{
+    "idDireccion": 1,
+    "nombre": "Área de Sistemas",
+    "descripcion": "Área de tecnología"
+}
+
+###Listar
+GET http://localhost:8080/api/areas
+
+###Obtener
+GET http://localhost:8080/api/areas/1
+
+###Actualizar
+PUT http://localhost:8080/api/areas/1
+{
+    "idDireccion": 1,
+    "nombre": "Área de TI",
+    "descripcion": "Actualizada",
+    "estado": true
+}
+
+###Eliminar
+DELETE http://localhost:8080/api/areas/1

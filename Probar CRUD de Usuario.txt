@@ -1,0 +1,133 @@
+ ###Registrar USUARIO COn datos persona, y rol
+POST http://localhost:8080/api/usuarios/registro
+{
+  "nombres": "pipe",
+  "apellidos": "doe",
+  "tipoDocumento": "CC",
+  "numeroDocumento": "172456789",
+  "email": "jhon16_39@hotmail.com",
+  "telefono": "12456789",
+  "idArea": 1,
+  "idEmpresa": 1,
+  "username": "jhon.perez",
+  "password": "12345",
+  "idRol": 2
+}
+
+###Listar
+GET http://localhost:8080/api/usuarios
+
+###Obtener
+GET http://localhost:8080/api/usuarios/1009
+
+###Actualizar
+PUT http://localhost:8080/api/usuarios/1009
+{
+  "username": "jhon.perez.cal",
+  "password": "12345"
+}
+
+###Eliminar
+DELETE http://localhost:8080/api/usuarios/1009
+{
+  "username": "jhon.perez"
+}
+
+###Activar Usuarios con token
+GET http://localhost:8080/api/usuarios/activar/{tokenOCodigo}
+
+
+### Reenviar Correo de Activacion
+POST http://localhost:8080/api/usuarios/reenviar-activacion?username=jhon.perez
+
+###Consultar informacion completa del usuario
+http://localhost:8080/api/usuarios/1/info-completa
+
+GET http://localhost:8080/api/usuarios/{id}/info-completa
+retorna el json:
+{
+    "idUsuario": 1,
+    "username": "jperezc",
+    "estado": false,
+    "fechaCreacion": "2024-12-28T15:13:39.85",
+    "rol": "ADMIN",
+    "idPersona": 1,
+    "nombres": "Usuario",
+    "apellidos": "Prueba",
+    "email": "test@test.com",
+    "estadoPersona": true,
+    "fechaCreacionPersona": "2024-12-28T13:48:56.82",
+    "idArea": 1,
+    "nombreArea": "Área de TI",
+    "estadoArea": false,
+    "idDireccion": 1,
+    "nombreDireccion": "Dirección de inspección, vigilancia, control y gestión territorial - IVC",
+    "estadoDireccion": true,
+    "idTerritorial": 1,
+    "nombreTerritorial": "Central DT",
+    "estadoTerritorial": true,
+    "idEmpresa": 1,
+    "nombreEmpresa": "Ministerio del Trabajo",
+    "estadoEmpresa": true
+}
+
+
+###Crear usuario LDAP
+POST http://localhost:8080/api/usuarios/ldap
+{
+    "username": "jperezc",
+    "idRol": 1,
+    "estado": true
+}
+
+->Respuesta esperada
+{
+    "mensaje": "Usuario LDAP registrado exitosamente",
+    "usuario": {
+        "id": 1,
+        "username": "jperezc@mintrabajo.loc",
+        "estado": true,
+        "fechaCreacion": "2025-01-02T15:30:00",
+        "rol": {
+            "id": 1,
+            "nombre": "ADMIN"
+        }
+    }
+}
+
+
+
+
+###ActualizarUsuario LDAP
+PUT http://localhost:8080/api/usuarios/ldap/1
+{
+    "idUsuario": 1,
+    "idRol": 2,
+    "estado": false
+}
+
+
+-> Respuesta esperada
+{
+    "mensaje": "Usuario LDAP actualizado exitosamente",
+    "usuario": {
+        "id": 1,
+        "username": "jperezc@mintrabajo.loc",
+        "estado": true,
+        "fechaCreacion": "2025-01-02T15:30:00",
+        "rol": {
+            "id": 2,
+            "nombre": "USUARIO"
+        }
+    }
+}
+
+
+###Eliminar
+DELETE http://localhost:8080/api/usuarios/ldap/1
+
+-> Respuesta esperada
+{
+    "mensaje": "Usuario LDAP eliminado exitosamente",
+    "username": "jperezc@mintrabajo.loc"
+}

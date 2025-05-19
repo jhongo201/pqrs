@@ -1,0 +1,37 @@
+### Listar Roles
+GET http://localhost:8080/api/roles
+Headers:
+- Authorization: Bearer {token}
+
+### Obtener Rol por ID
+GET http://localhost:8080/api/roles/1
+Headers:
+- Authorization: Bearer {token}
+
+### Crear Rol
+POST http://localhost:8080/api/roles
+Headers:
+- Authorization: Bearer {token}
+- Content-Type: application/json
+Body:
+{
+    "nombre": "OPERADOR",
+    "descripcion": "Rol para operadores del sistema"
+}
+
+### Actualizar Rol
+PUT http://localhost:8080/api/roles/1
+Headers:
+- Authorization: Bearer {token}
+- Content-Type: application/json
+Body:
+{
+    "nombre": "OPERADOR_SENIOR",
+    "descripcion": "Rol para operadores senior del sistema",
+    "estado": true
+}
+
+### Eliminar Rol
+DELETE http://localhost:8080/api/roles/1
+Headers:
+- Authorization: Bearer {token}

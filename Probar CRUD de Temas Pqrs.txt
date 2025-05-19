@@ -1,0 +1,133 @@
+### Listar temas-pqrs
+GET http://localhost:8080/api/temas-pqrs
+Headers:
+- Authorization: Bearer {token}
+
+### Obtener temas-pqrs por ID
+GET http://localhost:8080/api/temas-pqrs/3
+Headers:
+- Authorization: Bearer {token}
+
+### Crear temas-pqrs
+POST http://localhost:8080/api/temas-pqrs
+Headers:
+- Authorization: Bearer {token}
+- Content-Type: application/json
+Body:
+{
+    "idArea": 1,
+    "nombre": "Sistema de Informacions de Riesgo Psicosocial - SIRPSI",
+    "descripcion": "Sistema de informacion creado para Riesgos Laborales",
+    "estado": true
+}
+
+-->REspuesta esperada
+
+{
+    "idTema": 3,
+    "area": {
+        "idArea": 1,
+        "nombre": "Área de TI"
+    },
+    "nombre": "Sistema de Informacions de Riesgo Psicosocial - SIRPSI",
+    "descripcion": "Sistema de informacion creado para Riesgos Laborales",
+    "estado": true,
+    "fechaCreacion": "2025-01-02T16:52:10.268734",
+    "responsables": []
+}
+
+
+### Actualizar temas-pqrs
+PUT http://localhost:8080/api/temas-pqrs/{id}
+Headers:
+- Authorization: Bearer {token}
+- Content-Type: application/json
+Body:
+{
+    "idArea": 1,
+    "nombre": "Nombre Actualizado del Tema",
+    "descripcion": "Nueva descripción del tema",
+    "estado": true
+}
+
+
+
+-->Respuesta Esperada
+{
+    "idTema": 3,
+    "area": {
+        "idArea": 6,
+        "nombre": "Riesgos Laborales"
+    },
+    "nombre": "Sistema de Informacions de Riesgo Psicosocial - SIRPSI",
+    "descripcion": "Sistema de informacion creado para Riesgos Laborales",
+    "estado": true,
+    "fechaCreacion": "2025-01-02T16:52:10.27",
+    "responsables": []
+}
+
+### Eliminar temas-pqrs
+DELETE http://localhost:8080/api/temas-pqrs/4
+Headers:
+- Authorization: Bearer {token}
+
+-->Respuesta esperada:
+{
+    "mensaje": "Tema eliminado exitosamente"
+}
+
+##Vincular responsable al Tema pqrs
+POST http://localhost:8080/api/temas-pqrs/{id_tema}/responsables
+{
+    "idUsuario": 1031
+}
+
+-->Respuesta esperada
+{
+    "idTema": 3,
+    "area": {
+        "idArea": 6,
+        "nombre": "Riesgos Laborales"
+    },
+    "nombre": "Sistema de Informacions de Riesgo Psicosocial - SIRPSI",
+    "descripcion": "Sistema de informacion creado para Riesgos Laborales",
+    "estado": true,
+    "fechaCreacion": "2025-01-02T16:52:10.27",
+    "responsables": [
+        {
+            "idUsuario": 1031,
+            "username": "jperezc@mintrabajo.loc"
+        }
+    ]
+}
+
+###Desvincular responsable
+DELETE http://localhost:8080/api/temas-pqrs/{id_tema}/responsables/{id_Usuario}
+
+
+###Actualizar Responsable del tema pqrs
+PUT http://localhost:8080/api/temas-pqrs/{id_tema}/responsables
+{
+    "idUsuarioAnterior": 1,
+    "idUsuarioNuevo": 2
+}
+
+-->Respuesta esperada
+{
+    "idTema": 1,
+    "area": {
+        "idArea": 1,
+        "nombre": "Área Jurídica"
+    },
+    "nombre": "Consultas Jurídicas",
+    "descripcion": "Temas relacionados con consultas jurídicas y legales",
+    "estado": true,
+    "fechaCreacion": "2025-01-02T15:30:00",
+    "responsables": [
+        {
+            "idUsuario": 2,
+            "username": "nuevousuario",
+            "nombreCompleto": "Nuevo Usuario"
+        }
+    ]
+}

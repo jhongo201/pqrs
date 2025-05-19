@@ -1,0 +1,49 @@
+### Listar Permisos por Rol
+GET http://localhost:8080/api/permisos-rol/rol/1
+Headers:
+- Authorization: Bearer {token}
+
+### Asignar Permisos a Rol
+POST http://localhost:8080/api/permisos-rol/asignar
+Headers:
+- Authorization: Bearer {token}
+- Content-Type: application/json
+Body:
+{
+    "idRol": 1,
+    "permisos": [
+        {
+            "idRuta": 1,
+            "puedeLeer": true,
+            "puedeEscribir": true,
+            "puedeActualizar": false,
+            "puedeEliminar": false
+        },
+        {
+            "idRuta": 2,
+            "puedeLeer": true,
+            "puedeEscribir": false,
+            "puedeActualizar": false,
+            "puedeEliminar": false
+        }
+    ]
+}
+
+### Actualizar Permiso Específico
+PUT http://localhost:8080/api/permisos-rol/1
+Headers:
+- Authorization: Bearer {token}
+- Content-Type: application/json
+Body:
+{
+    "puedeLeer": true,
+    "puedeEscribir": true,
+    "puedeActualizar": true,
+    "puedeEliminar": false,
+    "estado": true
+}
+
+### Eliminar Permiso
+DELETE http://localhost:8080/api/permisos-rol/1
+Headers:
+- Authorization: Bearer {token}

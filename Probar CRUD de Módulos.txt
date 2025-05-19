@@ -1,0 +1,37 @@
+### Listar Módulos
+GET http://localhost:8080/api/modulos
+Headers:
+- Authorization: Bearer {token}
+
+### Obtener Módulo por ID
+GET http://localhost:8080/api/modulos/1
+Headers:
+- Authorization: Bearer {token}
+
+### Crear Módulo
+POST http://localhost:8080/api/modulos
+Headers:
+- Authorization: Bearer {token}
+- Content-Type: application/json
+Body:
+{
+    "nombre": "Reportes",
+    "descripcion": "Módulo de reportes y estadísticas"
+}
+
+### Actualizar Módulo
+PUT http://localhost:8080/api/modulos/1
+Headers:
+- Authorization: Bearer {token}
+- Content-Type: application/json
+Body:
+{
+    "nombre": "Reportes Actualizados",
+    "descripcion": "Módulo de reportes y estadísticas actualizado",
+    "estado": true
+}
+
+### Eliminar Módulo
+DELETE http://localhost:8080/api/modulos/1
+Headers:
+- Authorization: Bearer {token}
